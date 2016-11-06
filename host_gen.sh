@@ -31,6 +31,17 @@ resource "aws_instance" "${host}" {
 	}
 }
 
+resource "aws_network_interface" "${host}" {
+	subnet_id = "\${aws_subnet.priv.id}"
+	private_ips = ["10.0.$i.1"]
+	security_groups = ["\${aws_security_group.local.id}"]
+	source_dest_check = true
+	attachment {
+		instance = "\${aws_instance.${host}.id}"
+		device_index = 1
+	}
+}
+
 EOF
 
 done

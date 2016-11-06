@@ -21,3 +21,14 @@ resource "aws_instance" "v015" {
 	}
 }
 
+resource "aws_network_interface" "v015" {
+	subnet_id = "${aws_subnet.priv.id}"
+	private_ips = ["10.0.15.1"]
+	security_groups = ["${aws_security_group.local.id}"]
+	source_dest_check = true
+	attachment {
+		instance = "${aws_instance.v015.id}"
+		device_index = 1
+	}
+}
+
