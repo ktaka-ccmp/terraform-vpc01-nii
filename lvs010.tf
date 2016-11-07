@@ -1,8 +1,8 @@
 
-resource "aws_instance" "l010" {
+resource "aws_instance" "lvs010" {
 	private_ip = "10.0.128.10"
 	tags {
-        	Name = "ktaka_l010"
+        	Name = "ktaka_lvs010"
 		Owner = "ktaka"
     	}
 
@@ -19,5 +19,10 @@ resource "aws_instance" "l010" {
 		volume_size = 10
 		delete_on_termination = "true"
 	}
+}
+
+resource "aws_eip" "lvs010" {
+    instance = "${aws_instance.lvs010.id}"
+    vpc = true
 }
 

@@ -5,7 +5,7 @@ host_max=10
 
 for i in $(seq $host_min $host_max) ; do
 
-host=l$(printf %03d $i)
+host=lvs$(printf %03d $i)
 
 cat << EOF > ${host}.tf
 
@@ -29,6 +29,11 @@ resource "aws_instance" "${host}" {
 		volume_size = 10
 		delete_on_termination = "true"
 	}
+}
+
+resource "aws_eip" "${host}" {
+    instance = "\${aws_instance.${host}.id}"
+    vpc = true
 }
 
 EOF
