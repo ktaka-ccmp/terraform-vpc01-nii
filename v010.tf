@@ -7,10 +7,10 @@ resource "aws_instance" "v010" {
     	}
 
         ami = "ami-2a34e94a"
-        instance_type = "t2.micro"
+        instance_type = "t2.small"
         subnet_id = "${aws_subnet.priv.id}"
 	security_groups = ["${aws_security_group.local.id}"]
-        source_dest_check = true
+        source_dest_check = false
         key_name = "ktaka.root"
 	iam_instance_profile = "ktaka_role"
 
@@ -18,17 +18,6 @@ resource "aws_instance" "v010" {
 		volume_type = "gp2"
 		volume_size = 10
 		delete_on_termination = "true"
-	}
-}
-
-resource "aws_network_interface" "v010" {
-	subnet_id = "${aws_subnet.priv.id}"
-	private_ips = ["10.0.10.1"]
-	security_groups = ["${aws_security_group.local.id}"]
-	source_dest_check = true
-	attachment {
-		instance = "${aws_instance.v010.id}"
-		device_index = 1
 	}
 }
 
