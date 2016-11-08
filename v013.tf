@@ -1,6 +1,6 @@
 
 resource "aws_instance" "v013" {
-	private_ip = "10.0.13.0"
+	private_ip = "10.0.0.13"
 	tags {
         	Name = "ktaka_v013"
 		Owner = "ktaka"

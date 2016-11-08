@@ -1,7 +1,7 @@
 #!/bin/bash
 
 host_min=10
-host_max=10
+host_max=11
 
 for i in $(seq $host_min $host_max) ; do
 

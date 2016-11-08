@@ -10,7 +10,7 @@ host=v$(printf %03d $i)
 cat << EOF > ${host}.tf
 
 resource "aws_instance" "${host}" {
-	private_ip = "10.0.$i.0"
+	private_ip = "10.0.0.$i"
 	tags {
         	Name = "ktaka_${host}"
 		Owner = "ktaka"
