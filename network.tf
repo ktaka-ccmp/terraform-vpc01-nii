@@ -73,6 +73,19 @@ resource "aws_security_group" "ssh" {
       protocol = "tcp"
       cidr_blocks = ["124.41.93.194/32"]
   }
+# sak1
+  ingress {
+      from_port = 22
+      to_port = 22
+      protocol = "tcp"
+      cidr_blocks = ["49.212.10.161/32"]
+  }
+  ingress {
+      from_port = 443
+      to_port = 443
+      protocol = "tcp"
+      cidr_blocks = ["49.212.10.161/32"]
+  }
 # bose
   ingress {
       from_port = 22
