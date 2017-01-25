@@ -1,15 +1,15 @@
 
-resource "aws_instance" "lvs010" {
-	private_ip = "10.0.128.10"
+resource "aws_instance" "lvs012" {
+	private_ip = "10.0.128.12"
 	tags {
-        	Name = "ktaka_lvs010"
+        	Name = "ktaka_lvs012"
 		Owner = "ktaka"
     	}
 
         ami = "ami-2a34e94a"
         instance_type = "t2.small"
         subnet_id = "${aws_subnet.pub.id}"
-	security_groups = ["${aws_security_group.ssh.id}","${aws_security_group.local.id}"]
+	vpc_security_group_ids = ["${aws_security_group.ssh.id}","${aws_security_group.local.id}"]
         source_dest_check = false
         key_name = "ktaka.root"
 	iam_instance_profile = "ktaka_role"
@@ -21,8 +21,8 @@ resource "aws_instance" "lvs010" {
 	}
 }
 
-resource "aws_eip" "lvs010" {
-    instance = "${aws_instance.lvs010.id}"
+resource "aws_eip" "lvs012" {
+    instance = "${aws_instance.lvs012.id}"
     vpc = true
 }
 

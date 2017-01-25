@@ -1,7 +1,7 @@
 #!/bin/bash
 
-host_min=10
-host_max=11
+host_min=11
+host_max=12
 
 for i in $(seq $host_min $host_max) ; do
 
@@ -19,7 +19,7 @@ resource "aws_instance" "${host}" {
         ami = "ami-2a34e94a"
         instance_type = "t2.small"
         subnet_id = "\${aws_subnet.pub.id}"
-	security_groups = ["\${aws_security_group.ssh.id}","\${aws_security_group.local.id}"]
+	vpc_security_group_ids = ["\${aws_security_group.ssh.id}","\${aws_security_group.local.id}"]
         source_dest_check = false
         key_name = "ktaka.root"
 	iam_instance_profile = "ktaka_role"
